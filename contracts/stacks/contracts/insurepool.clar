@@ -1,13 +1,14 @@
-;; InsurePool
+;; InsurePool Clarity Contract
+;; Decentralized insurance coverage pools.
 
-(define-map data principal uint)
-(define-data-var counter uint u0)
 
-(define-public (store (value uint))
-    (ok (map-set data tx-sender value)))
+(define-map coverage principal uint)
 
-(define-read-only (retrieve (user principal))
-    (ok (default-to u0 (map-get? data user))))
+(define-public (buy-coverage)
+    (let ((amount (stx-get-balance tx-sender))) ;; Placeholder logic
+        (try! (stx-transfer? amount tx-sender (as-contract tx-sender)))
+        (map-set coverage tx-sender (* amount u10))
+        (ok true)
+    )
+)
 
-(define-public (increment-counter)
-    (ok (var-set counter (+ (var-get counter) u1))))
