@@ -2,8 +2,11 @@
 pragma solidity ^0.8.20;
 
 /// @title InsurePool Contract
+/// @author solidworkssa
 /// @notice Decentralized insurance coverage pools.
 contract InsurePool {
+    string public constant VERSION = "1.0.0";
+
 
     mapping(address => uint256) public coverage;
     mapping(address => uint256) public premiums;
