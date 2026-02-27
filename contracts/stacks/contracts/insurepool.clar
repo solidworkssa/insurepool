@@ -19,9 +19,9 @@
 (define-map coverage principal uint)
 
 (define-public (buy-coverage)
-    (let ((amount (stx-get-balance tx-sender))) ;; Placeholder logic
-        (try! (stx-transfer? amount tx-sender (as-contract tx-sender)))
-        (map-set coverage tx-sender (* amount u10))
+    (let ((amount (stx-get-balance contract-caller))) ;; Placeholder logic
+        (try! (stx-transfer? amount contract-caller (as-contract contract-caller)))
+        (map-set coverage contract-caller (* amount u10))
         (ok true)
     )
 )
